@@ -19,6 +19,9 @@ class Car(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
+    like = models.PositiveIntegerField(default=0)
+    dislike = models.PositiveIntegerField(default=0)
+
     def get_absolute_url(self):
         return reverse('blog:car_detail', kwargs={'slug': self.slug})
 
@@ -34,5 +37,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.name}"
-
-
