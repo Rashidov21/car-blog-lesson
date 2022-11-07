@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import Brand, Car, Comment
 from .forms import CommentForm
 
@@ -33,3 +33,17 @@ def detail(request, slug):
     }
     return render(request, 'detail.html', context)
 
+
+def car_like(request, slug):
+    car = Car.objects.get(slug=slug)
+    car.like += 1
+    car.save()
+    return redirect(f'/detail/{slug}')
+
+
+def car_dislike(request, slug):
+    car = Car.objects.get(slug=slug)
+    car.dislike += 1
+    car.save()
+    
+    return redirect(f'/detail/{slug}')

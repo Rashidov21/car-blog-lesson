@@ -18,6 +18,18 @@
 				<img src="{{object.image.url}}" class="img-fluid" alt="">
 				<div class="card-body">
 					<h3 class="card-title">{{ object.title }}</h1>
+
+						<div class="likes d-flex justify-content-start align-items-center">
+							<a href="{% url 'blog:like' object.slug %}" class="btn text-dark fs-3">
+								<i class="fas fa-thumbs-up h3"></i>
+							</a>
+							{{object.like}}
+							<a href="{% url 'blog:dislike' object.slug %}" class="btn text-dark">
+								<i class="fas fa-thumbs-down h3"></i>
+							</a>
+							{{object.dislike}}
+						</div>
+
 						<p>{{ object.description }}</p>
 
 				</div>
